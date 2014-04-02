@@ -42,7 +42,8 @@
 -(void)criaCoordenada:(Coordenada *)coord{
     [[[DataBaseCoordenada sharedManager] listaCoordenadas]addObject:coord];
     
-    for(int i=0;i<self.listaCoordenadas.count;i++){
+    
+//    for(int i=0;i<self.listaCoordenadas.count;i++){
 //        NSLog(@"%@",coord.nomeCategoria);
 //        NSLog(@"%@",coord.bairro);
 //        NSLog(@"%@",coord.cep);
@@ -54,7 +55,7 @@
 //        NSLog(@"%@",coord.data);
 //        NSLog(@"%d",coord.estado);
 //        NSLog(@"\n\n");
-    }
+//    }
 }
 
 -(void)criaCoordenadaCET:(CoordenadaCet *)coord{

@@ -18,6 +18,15 @@
     //API do twiiter
     STTwitterAPI *twitter;
 }
+//twitter
+
+- (IBAction)bteste:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *lteste;
+
+
+@property NSDate *dataBrasil;
+
++(ViewController*)sharedManager;
 
 //Tipo do mapa
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipoMapa;

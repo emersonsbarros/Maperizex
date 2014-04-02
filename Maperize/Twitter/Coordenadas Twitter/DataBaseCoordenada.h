@@ -19,6 +19,7 @@
 
 
 @property NSMutableArray *listaCoordenadas;
+@property NSTimer *tempoAtual;
 
 +(DataBaseCoordenada*)sharedManager;
 
@@ -40,5 +41,7 @@
 -(MKPointAnnotation*)marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:(CoordenadaCorpo*)CoordCet;
 
 -(MKPointAnnotation*)marcarPosicaoNoMapaDiretoSiteCet:(CoordenadaCetSite*)CoordCet;
+
+
     
 @end

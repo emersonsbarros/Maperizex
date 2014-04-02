@@ -10,6 +10,7 @@
 		0B58F3E918E9DF5700AF7B38 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3E818E9DF5700AF7B38 /* Accounts.framework */; };
 		0B58F3EB18E9DF5E00AF7B38 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3EA18E9DF5E00AF7B38 /* Social.framework */; };
 		0B58F3ED18E9DF6700AF7B38 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3EC18E9DF6700AF7B38 /* Twitter.framework */; };
+		0B5E96B118ECAD3000E42C58 /* SendTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E96B018ECAD3000E42C58 /* SendTwitterViewController.m */; };
 		3FB0D1E018EBEB4C002CEB5A /* BombeirosIcone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB0D1DD18EBEB4C002CEB5A /* BombeirosIcone.png */; };
 		3FB0D1E118EBEB4C002CEB5A /* CETIcone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB0D1DE18EBEB4C002CEB5A /* CETIcone.png */; };
 		3FB0D1E218EBEB4C002CEB5A /* ProjectIcone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB0D1DF18EBEB4C002CEB5A /* ProjectIcone.png */; };
@@ -85,6 +86,8 @@
 		0B58F3E818E9DF5700AF7B38 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		0B58F3EA18E9DF5E00AF7B38 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0B58F3EC18E9DF6700AF7B38 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		0B5E96AF18ECAD3000E42C58 /* SendTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SendTwitterViewController.h; path = ../SendTwitterViewController.h; sourceTree = "<group>"; };
+		0B5E96B018ECAD3000E42C58 /* SendTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SendTwitterViewController.m; path = ../SendTwitterViewController.m; sourceTree = "<group>"; };
 		3FB0D1DD18EBEB4C002CEB5A /* BombeirosIcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BombeirosIcone.png; sourceTree = "<group>"; };
 		3FB0D1DE18EBEB4C002CEB5A /* CETIcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CETIcone.png; sourceTree = "<group>"; };
 		3FB0D1DF18EBEB4C002CEB5A /* ProjectIcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProjectIcone.png; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 		A86E579E18E6125300C65A59 /* Controladores */ = {
 			isa = PBXGroup;
 			children = (
+				0B5E96AF18ECAD3000E42C58 /* SendTwitterViewController.h */,
+				0B5E96B018ECAD3000E42C58 /* SendTwitterViewController.m */,
 				A8C326F018E34D0B0081E47E /* ViewController.h */,
 				A8C326F118E34D0B0081E47E /* ViewController.m */,
 			);
@@ -602,6 +607,7 @@
 				A8DB34C918EB5C3200158D4E /* DataBaseCoordenadaRadares.m in Sources */,
 				A8DB34C718EB5C3200158D4E /* Tweet.m in Sources */,
 				A8DB34DC18EB5C3200158D4E /* JSONSyntaxHighlight.m in Sources */,
+				0B5E96B118ECAD3000E42C58 /* SendTwitterViewController.m in Sources */,
 				A8DB34D618EB5C3200158D4E /* STTwitterAppOnly.m in Sources */,
 				A8C326F218E34D0B0081E47E /* ViewController.m in Sources */,
 				A8DB34C018EB5C3200158D4E /* DataBaseCoordenada.m in Sources */,

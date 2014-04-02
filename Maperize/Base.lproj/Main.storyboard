@@ -89,12 +89,31 @@
                                     <action selector="searchRota:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LNg-Fv-5op"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OEK-eI-SgR">
+                                <rect key="frame" x="650" y="103" width="90" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZH-pg-tTg">
+                                <rect key="frame" x="650" y="103" width="90" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="bteste:" destination="BYZ-38-t0r" eventType="touchUpInside" id="su5-R1-Q6f"/>
+                                    <segue destination="QGc-6I-tv6" kind="modal" id="ITa-2z-aUi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="lblRota" destination="N3C-2N-Izh" id="THx-pN-08Z"/>
                         <outlet property="lblbackground" destination="hvb-Dr-eS6" id="lPR-en-soa"/>
+                        <outlet property="lteste" destination="eZH-pg-tTg" id="tXC-A1-kRg"/>
                         <outlet property="mapaBacana" destination="Gqb-yf-Npo" id="2sW-Lt-aX2"/>
                         <outlet property="outAddRota" destination="6ml-gO-851" id="noA-EC-duG"/>
                         <outlet property="outSearchRota" destination="sfH-IN-zAQ" id="y7E-5T-QNJ"/>
@@ -115,7 +134,46 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-164" y="72"/>
+            <point key="canvasLocation" x="-546" y="-131"/>
+        </scene>
+        <!--Send Twitter View Controller-->
+        <scene sceneID="Vlb-0I-k6z">
+            <objects>
+                <viewController id="QGc-6I-tv6" customClass="SendTwitterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lhf-QQ-G0p"/>
+                        <viewControllerLayoutGuide type="bottom" id="3b8-Wl-Wwa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fkC-af-eH1">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOV-nR-kHZ">
+                                <rect key="frame" x="248" y="267" width="112" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonTwetar:" destination="QGc-6I-tv6" eventType="touchUpInside" id="6Zh-cg-svM"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ajg-s3-lby">
+                                <rect key="frame" x="83" y="229" width="458" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="campoTweet" destination="Ajg-s3-lby" id="xxb-xA-AbV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="giJ-XP-7Vo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="285" y="-188"/>
         </scene>
     </scenes>
     <resources>

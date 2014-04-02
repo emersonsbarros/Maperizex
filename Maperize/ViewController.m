@@ -27,6 +27,20 @@
 
 @implementation ViewController
 
+
++(ViewController*)sharedManager{
+    static ViewController *unicoDataCoord = nil;
+    if(!unicoDataCoord){
+        unicoDataCoord = [[super allocWithZone:nil]init];
+    }
+    return unicoDataCoord;
+}
+
+
++(id)allocWithZone:(struct _NSZone *)zone{
+    return [self sharedManager];
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -45,7 +59,7 @@
     [self.view addSubview: self.txtPartida];
     [self.view addSubview: self.txtDestino];
     [self.view addSubview: self.outSearchRota];
-    
+    [self.view addSubview: self.lteste];
     
     /// ATRIBUTOS DO TWITER
     twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@"FxaToB2yxC9iX3fJ4tzgw"
@@ -58,11 +72,12 @@
     [self refreshTwitterCorpo];
     [self serializaDadosSiteCET];
     
-    [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(serializaDadosSiteCET) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
+   [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:300.0 target:self selector:@selector(serializaDadosSiteCET) userInfo:nil repeats:YES];
+   [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTime) userInfo:nil repeats:YES];
     
-    
+
     
     
     //     Marca os radares na tela
@@ -90,6 +105,28 @@
 
 //================================== MÉTODOS PARA TWITTER ======================================
 
+-(void)removePino{
+    
+}
+
+-(void)refreshTime{
+    NSDate *today = [[NSDate alloc] init];
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    self.dataBrasil = [gregorian dateByAddingComponents:offsetComponents toDate:today options:0];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/mm/yyyy hh:mm:ss"];
+    NSString *newStr = [formatter stringFromDate:self.dataBrasil];
+    
+    NSArray *tempo = [newStr componentsSeparatedByString:@" "];
+    NSString *hora = [tempo objectAtIndex:1];
+    NSString *data = [tempo objectAtIndex:0];
+    
+    NSLog(@"data = %@", hora);
+    NSLog(@"data = %@", data);
+
+}
 
 - (void) refreshTwitterProject {
     
@@ -138,12 +175,11 @@
                                      
                                      NSArray *a = [comment componentsSeparatedByString:@","];
                                      tw.tweetCompleto = comment;
-                                     tw.cep = [a objectAtIndex:1];
-                                     tw.rua = [a objectAtIndex:2];
-                                     tw.numero = [a objectAtIndex:3];
+                                     tw.rua = [a objectAtIndex:1];
+                                     tw.numero = [a objectAtIndex:2];
                                      
                                      
-                                     NSArray *a2 = [[a objectAtIndex:4] componentsSeparatedByString:@"http"];
+                                     NSArray *a2 = [[a objectAtIndex:3] componentsSeparatedByString:@"http"];
                                      tw.descricao = [a2 objectAtIndex:0];
                                      
                                      NSArray *a3 = [date componentsSeparatedByString:@" "];
@@ -186,9 +222,6 @@
                                      
                                  }
                                  
-                                 //[self marcarPosicaoNoMapaDiretoTwitter];
-                                 self.mapaBacana.showsUserLocation = YES;
-                                 [self zoomToUserRegion];
                                  
                              } errorBlock:^(NSError *error) {
                                  NSLog(@"Error1");
@@ -407,7 +440,7 @@
                                      lang:nil
                                    locale:nil
                                resultType:nil
-                                    count:@"40"
+                                    count:@"50"
                                     until:nil
                                   sinceID:nil
                                     maxID:nil
@@ -990,5 +1023,7 @@
 
 - (IBAction)searchRota:(id)sender {
     [self calcularRota];
+}
+- (IBAction)bteste:(id)sender {
 }
 @end
