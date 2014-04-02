@@ -53,14 +53,14 @@
     
     [[DataBaseCoordenadaRadares sharedManager] SerializarCoordenadasRadarDoSistema];
     
-    [self refreshTwitterCET];
+    //[self refreshTwitterCET];
     [self refreshTwitterProject];
     [self refreshTwitterCorpo];
     [self serializaDadosSiteCET];
     
-    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterCET) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(serializaDadosSiteCET) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:120.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
     
     
     
@@ -407,7 +407,7 @@
                                      lang:nil
                                    locale:nil
                                resultType:nil
-                                    count:@"10"
+                                    count:@"40"
                                     until:nil
                                   sinceID:nil
                                     maxID:nil
@@ -442,6 +442,12 @@
                                          NSString *est5 = @"Incêndio";
                                          NSString *est6 = @"Colisão";
                                          
+                                         NSString *est7 = @"Auto/";
+                                         NSString *est8 = @"Ônibus/";
+                                         NSString *est9 = @"Caminhão/";
+                                         NSString *est10 = @"Fogo";
+                                         
+                                         
                                          
                                          if( ( ([v intValue] == 0) || ([v intValue] == 1) || ([v intValue] == 2)) &&
                                             (([sentence rangeOfString:est2].location == NSNotFound)) &&
@@ -449,6 +455,10 @@
                                              ([sentence rangeOfString:est3].location != NSNotFound) ||
                                              ([sentence rangeOfString:est4].location != NSNotFound) ||
                                              ([sentence rangeOfString:est6].location != NSNotFound) ||
+                                             ([sentence rangeOfString:est7].location != NSNotFound) ||
+                                             ([sentence rangeOfString:est8].location != NSNotFound) ||
+                                             ([sentence rangeOfString:est9].location != NSNotFound) ||
+                                             ([sentence rangeOfString:est10].location != NSNotFound) ||
                                              ([sentence rangeOfString:est5].location != NSNotFound)) )  {
                                                 
                                                 validartwitter = true;
@@ -577,32 +587,6 @@
     }];
 }
 
-
--(void)marcarPosicaoNoMapaDiretoTwitterCadaProject:(Coordenada*)Coord{
-    
-    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoTwitterCadaProject:Coord]];
-    
-}
-
--(void)marcarPosicaoNoMapaDiretoTwitterCadaUmCET:(CoordenadaCet*)CoordCet{
-    
-    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoTwitterCadaUmCET:CoordCet]];
-    
-}
-
--(void)marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:(CoordenadaCorpo*)CoordCet{
-    
-    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:CoordCet]];
-    
-}
-
--(void)marcarPosicaoNoMapaDiretoSiteCet:(CoordenadaCetSite*)CoordCet{
-    
-    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoSiteCet:CoordCet]];
-    
-}
-
-
 -(void)serializaDadosSiteCET{
     
     NSString *problema = @"Ocorrências não disponíveis no momento";
@@ -619,7 +603,7 @@
         NSURL* query = [NSURL URLWithString:s];
         result = [NSString stringWithContentsOfURL:query encoding:NSWindowsCP1254StringEncoding error:nil];
         
-        NSLog(@"site =%@",s);
+        // NSLog(@"site =%@",s);
         
     }
     
@@ -673,55 +657,63 @@
         t.hora = [arR2 objectAtIndex:1];
         
         
-        //        BOOL estadoParaAdicionar = true;
-        //
-        //        for(int i=0;i<[[[DataBaseCoordenada sharedManager]listaCoordenadas ]count];i++){
-        //            CoordenadaCetSite *coord = [[[DataBaseCoordenada sharedManager]listaCoordenadas ]objectAtIndex:i];
-        //            if([coord isKindOfClass:[CoordenadaCetSite class]]){
-        //                if(([[coord hora] isEqualToString:[t hora]]) && ([[coord data] isEqualToString:[t data]])){
-        //                    estadoParaAdicionar = false;
-        //                    break;
-        //                }
-        //
-        //            }
-        //        }
-        //
-        //        if(estadoParaAdicionar){
-        //            CoordenadaCorpo *coord = [[CoordenadaCorpo alloc]initCoordenada:tw];
-        //            [[DataBaseCoordenada sharedManager]criaCoordenadaCorpo:coord];
-        //
-        //            [self marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:coord];
-        //        }else{
-        //            NSLog(@"ja add bomb");
-        //        }
+        BOOL estadoParaAdicionar = true;
         
-        [[DataBaseCoordenada sharedManager]criaCoordenadaSiteCET:t];
-        [self marcarPosicaoNoMapaDiretoSiteCet:t];
+        for(int i=0;i<[[[DataBaseCoordenada sharedManager]listaCoordenadas ]count];i++){
+            CoordenadaCetSite *coord = [[[DataBaseCoordenada sharedManager]listaCoordenadas ]objectAtIndex:i];
+            if([coord isKindOfClass:[CoordenadaCetSite class]]){
+                if(([[coord hora] isEqualToString:[t hora]]) && ([[coord data] isEqualToString:[t data]])){
+                    estadoParaAdicionar = false;
+                    break;
+                }
+                
+            }
+        }
+        
+        if(estadoParaAdicionar){
+            [[DataBaseCoordenada sharedManager]criaCoordenadaSiteCET:t];
+            [self marcarPosicaoNoMapaDiretoSiteCet:t];
+        }else{
+            NSLog(@"ja add site");
+        }
         
         
         continua = [stringFinal rangeOfString:@"<tr class"];
         
         
-        NSLog(@"\n");
         
     }
     
-    
-    
-    
-    
-    
-    //NSLog(@"t = %@",t.codigo);
-    
-    //pega o proximo #EXTINF:-1, até sair do While
     continua = [stringFinal rangeOfString:@"<tr class"];
-    
-    //    @property NSString *codigo;
-    //    @property NSString *local;
-    //    @property NSString *sentido;
-    //    @property NSString *data;
-    //    @property NSString *hora;
+
 }
+
+
+
+-(void)marcarPosicaoNoMapaDiretoTwitterCadaProject:(Coordenada*)Coord{
+    
+    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoTwitterCadaProject:Coord]];
+    
+}
+
+-(void)marcarPosicaoNoMapaDiretoTwitterCadaUmCET:(CoordenadaCet*)CoordCet{
+    
+    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoTwitterCadaUmCET:CoordCet]];
+    
+}
+
+-(void)marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:(CoordenadaCorpo*)CoordCet{
+    
+    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:CoordCet]];
+    
+}
+
+-(void)marcarPosicaoNoMapaDiretoSiteCet:(CoordenadaCetSite*)CoordCet{
+    
+    [[self mapaBacana] addAnnotation: [[DataBaseCoordenada sharedManager]marcarPosicaoNoMapaDiretoSiteCet:CoordCet]];
+    
+}
+
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
@@ -729,12 +721,12 @@
     MKPinAnnotationView *pinView = [[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:annotationIdentifier];
     
     if([pinView.annotation.title isEqualToString:@"Project"]) {
-        [pinView setImage:[UIImage imageNamed:@"Lompada.png"]];
+        [pinView setImage:[UIImage imageNamed:@"ProjectIcone.png"]];
         //pinView.pinColor = MKPinAnnotationColorPurple;
     }
     
     if([pinView.annotation.title isEqualToString:@"CET"]) {
-        [pinView setImage:[UIImage imageNamed:@"Pedagio.png"]];
+        [pinView setImage:[UIImage imageNamed:@"CETIcone.png"]];
         //pinView.pinColor = MKPinAnnotationColorGreen;
     }
     
@@ -744,7 +736,12 @@
     }
     
     if([pinView.annotation.title isEqualToString:@"Corpo"]){
-        [pinView setImage:[UIImage imageNamed:@"Pedagio.png"]];
+        [pinView setImage:[UIImage imageNamed:@"BombeirosIcone.png"]];
+        //pinView.pinColor = MKPinAnnotationColorRed;
+    }
+    
+    if([pinView.annotation.title isEqualToString:@"Site CET"]){
+        [pinView setImage:[UIImage imageNamed:@"CETIcone.png"]];
         //pinView.pinColor = MKPinAnnotationColorRed;
     }
     
