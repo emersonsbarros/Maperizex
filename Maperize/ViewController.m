@@ -30,6 +30,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    
     //Configura a localização atual como a localização do usuário e adiciona os delegates do mapa e pesquisa
     self.mapaBacana.showsUserLocation = YES;
     [self.mapaBacana setDelegate: self];
@@ -42,9 +43,21 @@
     [self.view addSubview: self.tipoMapa];
     [self.view addSubview: self.searchBar];
     [self.view addSubview: self.lblRota];
-    [self.view addSubview: self.txtPartida];
-    [self.view addSubview: self.txtDestino];
-    [self.view addSubview: self.outSearchRota];
+
+     [self.view addSubview: self.altbu];
+    
+    [self.menuView addSubview: self.txtPartida];
+    [self.menuView addSubview: self.txtDestino];
+    [self.menuView addSubview: self.outSearchRota];
+    
+    self.menuView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.menuView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.menuView.layer.shadowRadius = 3.0f;
+    self.menuView.layer.shadowOpacity = 1.0f;
+    [self.menuView setBackgroundColor: [UIColor whiteColor]];
+    
+    [self.view addSubview: self.menuView];
+    
     
     
     /// ATRIBUTOS DO TWITER
@@ -967,31 +980,17 @@
 
 - (IBAction)addRota:(id)sender {
     
-    if (self.searchBar.hidden == NO) {
-        //Esconde a barra de pesquisa
-        self.searchBar.hidden = YES;
-        
-        //Mostra os componentes para o cálculo de rota
-        self.lblRota.hidden = NO;
-        self.txtPartida.hidden = NO;
-        self.txtDestino.hidden = NO;
-        self.outSearchRota.hidden = NO;
-    }else{
-        //Mostra a barra de pesquisa
-        self.searchBar.hidden = NO;
-        
-        //Esconde os componentes para o cálculo de rota
-        self.lblRota.hidden = YES;
-        self.txtPartida.hidden = YES;
-        self.txtDestino.hidden = YES;
-        self.outSearchRota.hidden = YES;
-    }
-    
+    if (self.menuView.hidden == YES)
+        self.menuView.hidden = NO;
+    else
+        self.menuView.hidden = YES;
 
 }
 
 
 - (IBAction)searchRota:(id)sender {
     [self calcularRota];
+}
+- (IBAction)bu:(id)sender {
 }
 @end

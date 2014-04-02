@@ -18,6 +18,11 @@
     //API do twiiter
     STTwitterAPI *twitter;
 }
+- (IBAction)bu:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *altbu;
+
+//View do menu
+@property (weak, nonatomic) IBOutlet UIView *menuView;
 
 //Tipo do mapa
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipoMapa;
