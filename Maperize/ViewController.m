@@ -35,6 +35,8 @@
     self.mapaBacana.showsUserLocation = YES;
     [self.mapaBacana setDelegate: self];
     [self.searchBar setDelegate: self];
+    [self.txtPartida setDelegate: self];
+    [self.txtDestino setDelegate: self];
     
     //Adiciona as views do mapa, botão, caixa de texto ... etc
     [self.view addSubview: self.mapaBacana];
@@ -42,14 +44,17 @@
     [self.view addSubview: self.outAddRota];
     [self.view addSubview: self.tipoMapa];
     [self.view addSubview: self.searchBar];
-    [self.view addSubview: self.lblRota];
+    
 
      [self.view addSubview: self.altbu];
     
+    //Adiciona a view de rotas seus componentes
+    [self.menuView addSubview: self.lblRota];
     [self.menuView addSubview: self.txtPartida];
     [self.menuView addSubview: self.txtDestino];
-    [self.menuView addSubview: self.outSearchRota];
     
+    
+    //Configura sombra e cor da view de rotas
     self.menuView.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.menuView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.menuView.layer.shadowRadius = 3.0f;
@@ -64,17 +69,17 @@
     twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@"FxaToB2yxC9iX3fJ4tzgw"
                                               consumerSecret:@"f0IVL6hjhaoC4OncXLVp8mxq3Aq5x0BFjnvMBZjUXzQ"];
     
-    [[DataBaseCoordenadaRadares sharedManager] SerializarCoordenadasRadarDoSistema];
-    
-    [self refreshTwitterCET];
-    [self refreshTwitterProject];
-    [self refreshTwitterCorpo];
+//    [[DataBaseCoordenadaRadares sharedManager] SerializarCoordenadasRadarDoSistema];
+//    
+//    [self refreshTwitterCET];
+//    [self refreshTwitterProject];
+//    [self refreshTwitterCorpo];
     [self serializaDadosSiteCET];
     
-    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterCET) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
-    
+//    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterCET) userInfo:nil repeats:YES];
+//    [NSTimer scheduledTimerWithTimeInterval:20.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
+//    
     
     
     
@@ -878,29 +883,58 @@
     if ([self inicio] == nil) {
         
         //Ponto onde será adicionado a marcação
-        CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+        CLGeocoder *geocoderDestino = [[CLGeocoder alloc] init];
+        CLGeocoder *geocoderPartida = [[CLGeocoder alloc] init];
+        MKPlacemark __block *pinInicio = [[MKPlacemark alloc] initWithCoordinate: [[[self mapaBacana] userLocation] coordinate] addressDictionary:nil];
+        MKPlacemark __block *pinDestino;
         
-        [geocoder geocodeAddressString:self.txtDestino.text completionHandler:^(NSArray* placemarks, NSError* error){
+        
+        //Se o usuário  digitou um outro ponto de partida solicitamos que o geocoder encontre-o também
+        if (self.txtPartida.text != [NSString stringWithFormat:@""]) {
+
+            [geocoderPartida geocodeAddressString:self.txtPartida.text completionHandler:^(NSArray* placemarks, NSError* error){
+                if(error){
+                    NSLog(@"Erro ao buscar destino - %@", error.description)
+                }
+                else{
+                    CLPlacemark  *aPlacemark = [placemarks firstObject];
+                    CLLocationCoordinate2D localizacaoPartida;
+                    
+                    //Guarda a latitude e longitude para marcação no mapa
+                    NSString *latitude = [NSString stringWithFormat:@"%f", aPlacemark.location.coordinate.latitude];
+                    NSString *longitude = [NSString stringWithFormat:@"%f", aPlacemark.location.coordinate.longitude];
+                    localizacaoPartida.latitude = [latitude doubleValue];
+                    localizacaoPartida.longitude = [longitude doubleValue];
+                    
+                    
+                    pinInicio = [[MKPlacemark alloc] initWithCoordinate: localizacaoPartida addressDictionary:nil];
+                }
+                
+            }];
+        }
+        
+        
+        
+        
+        
+        [geocoderDestino geocodeAddressString:self.txtDestino.text completionHandler:^(NSArray* placemarks, NSError* error){
             if(error){
                 NSLog(@"Erro ao buscar destino - %@", error.description)
             }
             else{
                 CLPlacemark  *aPlacemark = [placemarks firstObject];
-                CLLocationCoordinate2D localizacao;
+                CLLocationCoordinate2D localizacaoDestino;
                 
                 //Guarda a latitude e longitude para marcação no mapa
                 NSString *latitude = [NSString stringWithFormat:@"%f", aPlacemark.location.coordinate.latitude];
                 NSString *longitude = [NSString stringWithFormat:@"%f", aPlacemark.location.coordinate.longitude];
-                localizacao.latitude = [latitude doubleValue];
-                localizacao.longitude = [longitude doubleValue];
+                localizacaoDestino.latitude = [latitude doubleValue];
+                localizacaoDestino.longitude = [longitude doubleValue];
                 
-                                
-                MKPlacemark *pinInicio = [[MKPlacemark alloc] initWithCoordinate: [[[self mapaBacana] userLocation] coordinate] addressDictionary:nil];
-                MKPlacemark *pinDestino = [[MKPlacemark alloc] initWithCoordinate: localizacao addressDictionary:nil];
+                pinDestino = [[MKPlacemark alloc] initWithCoordinate: localizacaoDestino addressDictionary:nil];
                 
                 self.inicio = [[MKMapItem alloc] initWithPlacemark: pinInicio];
                 self.destino = [[MKMapItem alloc] initWithPlacemark: pinDestino];
-                
                 [self obterDirecoes];
                 
             }
@@ -982,15 +1016,29 @@
     
     if (self.menuView.hidden == YES)
         self.menuView.hidden = NO;
-    else
+    else{
         self.menuView.hidden = YES;
-
+        self.txtPartida.text = @"";
+        self.txtDestino.text = @"";
+        [self.txtDestino resignFirstResponder];
+    }
 }
 
 
-- (IBAction)searchRota:(id)sender {
-    [self calcularRota];
+
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField{
+    
+    if (textField.returnKeyType == UIReturnKeySearch)
+        [self calcularRota];
+    else
+        [[self txtDestino] becomeFirstResponder];
+    
+    return YES;
 }
+
+
 - (IBAction)bu:(id)sender {
 }
+
 @end

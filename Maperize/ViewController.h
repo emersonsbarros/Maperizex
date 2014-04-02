@@ -38,8 +38,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPartida;
 @property (weak, nonatomic) IBOutlet UITextField *txtDestino;
 @property (weak, nonatomic) IBOutlet UILabel *lblRota;
-@property (weak, nonatomic) IBOutlet UIButton *outSearchRota;
-- (IBAction)searchRota:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *outAddRota;
 - (IBAction)addRota:(id)sender;
 
