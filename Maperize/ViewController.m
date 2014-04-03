@@ -979,6 +979,10 @@
 //Mostra as direções da rota passo-a-passo
 -(void)mostraRotaPassoAPasso:(MKDirectionsResponse*)response{
     
+    
+    //Tolerância para sabwe se passa no ponto de obstáculo
+    double tolerancia = 0.000020;
+    
     for (MKRoute *rota in response.routes) {
         
         CoodenadaLatitudeLongitude *coordenadaDeObstaculo;
@@ -997,7 +1001,7 @@
                 NSLog(@"OBST LATITUDE: %f / LONGITUDE: %f",  coordenadaDeObstaculo.latitude,  coordenadaDeObstaculo.longitude);
                 
                 
-                if ((coordenadaDeObstaculo.latitude == coordenadaDeRota.latitude) && ((coordenadaDeObstaculo.longitude == coordenadaDeRota.longitude))) {
+                if ((      ((coordenadaDeObstaculo.latitude <= (coordenadaDeRota.latitude) + tolerancia)) && (coordenadaDeObstaculo.latitude >= (coordenadaDeRota.latitude) - tolerancia))    &&                                     ((coordenadaDeObstaculo.longitude <= (coordenadaDeRota.longitude) + tolerancia)) && (coordenadaDeObstaculo.longitude >= (coordenadaDeRota.longitude) - tolerancia)) {
                     NSLog(@"Está rota passa por um pino!");
                 }
                 
