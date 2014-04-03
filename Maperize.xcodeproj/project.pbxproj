@@ -10,6 +10,8 @@
 		0B58F3E918E9DF5700AF7B38 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3E818E9DF5700AF7B38 /* Accounts.framework */; };
 		0B58F3EB18E9DF5E00AF7B38 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3EA18E9DF5E00AF7B38 /* Social.framework */; };
 		0B58F3ED18E9DF6700AF7B38 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3EC18E9DF6700AF7B38 /* Twitter.framework */; };
+		A8231AAE18EDE37700117EA8 /* CoodenadaLatitudeLongitude.m in Sources */ = {isa = PBXBuildFile; fileRef = A8231AAD18EDE37700117EA8 /* CoodenadaLatitudeLongitude.m */; };
+		A84D356818ECA3CB004E8190 /* routes.png in Resources */ = {isa = PBXBuildFile; fileRef = A84D356718ECA3CB004E8190 /* routes.png */; };
 		A86E57A018E6189400C65A59 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A86E579F18E6189400C65A59 /* search.png */; };
 		A8C326DC18E34D0B0081E47E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C326DB18E34D0B0081E47E /* Foundation.framework */; };
 		A8C326DE18E34D0B0081E47E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C326DD18E34D0B0081E47E /* CoreGraphics.framework */; };
@@ -82,6 +84,9 @@
 		0B58F3E818E9DF5700AF7B38 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		0B58F3EA18E9DF5E00AF7B38 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0B58F3EC18E9DF6700AF7B38 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		A8231AAC18EDE37700117EA8 /* CoodenadaLatitudeLongitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoodenadaLatitudeLongitude.h; sourceTree = "<group>"; };
+		A8231AAD18EDE37700117EA8 /* CoodenadaLatitudeLongitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoodenadaLatitudeLongitude.m; sourceTree = "<group>"; };
+		A84D356718ECA3CB004E8190 /* routes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routes.png; sourceTree = "<group>"; };
 		A86E579F18E6189400C65A59 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A8C326D818E34D0B0081E47E /* Maperize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maperize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8C326DB18E34D0B0081E47E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -355,6 +360,8 @@
 		A8DB347718EB5C3200158D4E /* Coordenadas Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				A8231AAC18EDE37700117EA8 /* CoodenadaLatitudeLongitude.h */,
+				A8231AAD18EDE37700117EA8 /* CoodenadaLatitudeLongitude.m */,
 				A8DB347818EB5C3200158D4E /* DataBaseCoordenada.h */,
 				A8DB347918EB5C3200158D4E /* DataBaseCoordenada.m */,
 				A8DB347A18EB5C3200158D4E /* TwitterCET */,
@@ -413,6 +420,7 @@
 		A8DB349018EB5C3200158D4E /* Imagens */ = {
 			isa = PBXGroup;
 			children = (
+				A84D356718ECA3CB004E8190 /* routes.png */,
 				A8DB349118EB5C3200158D4E /* Lompada.png */,
 				A8DB349218EB5C3200158D4E /* Pedagio.png */,
 				A8DB349318EB5C3200158D4E /* PoliciaRodoviaria.png */,
@@ -561,6 +569,7 @@
 				A8DB34B718EB5C3200158D4E /* maparadar_todos_SP.txt in Resources */,
 				A8C326EF18E34D0B0081E47E /* Main.storyboard in Resources */,
 				A8DB34B818EB5C3200158D4E /* Pedagio_maparadar.txt in Resources */,
+				A84D356818ECA3CB004E8190 /* routes.png in Resources */,
 				A8DB34CA18EB5C3200158D4E /* Lompada.png in Resources */,
 				A8DB34B918EB5C3200158D4E /* PoliciaRodoviaria_maparadar.txt in Resources */,
 				A86E57A018E6189400C65A59 /* search.png in Resources */,
@@ -610,6 +619,7 @@
 				A8DB34C218EB5C3200158D4E /* CoordenadaCetSite.m in Sources */,
 				A8DB34D118EB5C3200158D4E /* NSDateFormatter+STTwitter.m in Sources */,
 				A8DB34DB18EB5C3200158D4E /* BAVPlistNode.m in Sources */,
+				A8231AAE18EDE37700117EA8 /* CoodenadaLatitudeLongitude.m in Sources */,
 				A8DB34C518EB5C3200158D4E /* TweetCorpo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
