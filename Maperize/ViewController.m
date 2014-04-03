@@ -980,14 +980,42 @@
 -(void)mostraRotaPassoAPasso:(MKDirectionsResponse*)response{
     
     for (MKRoute *rota in response.routes) {
+        
+        CoodenadaLatitudeLongitude *coordenadaDeObstaculo;
+        CLLocationCoordinate2D coordenadaDeRota;
+        
+        for (coordenadaDeObstaculo in [[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]) {
+            
+            for (int i = 0; i < rota.polyline.pointCount; i++) {
+                
+                coordenadaDeRota = MKCoordinateForMapPoint(rota.polyline.points[i]);
+                
+                coordenadaDeRota.latitude = coordenadaDeRota.latitude;
+                coordenadaDeRota.longitude = coordenadaDeRota.longitude;
+                
+                NSLog(@"\nROTA LATITUDE: %f / LONGITUDE: %f",  coordenadaDeRota.latitude,  coordenadaDeRota.longitude);
+                NSLog(@"OBST LATITUDE: %f / LONGITUDE: %f",  coordenadaDeObstaculo.latitude,  coordenadaDeObstaculo.longitude);
+                
+                
+                if ((coordenadaDeObstaculo.latitude == coordenadaDeRota.latitude) && ((coordenadaDeObstaculo.longitude == coordenadaDeRota.longitude))) {
+                    NSLog(@"Está rota passa por um pino!");
+                }
+                
+                
+            }
+        }
+        
+        
+        
+        
         [self.mapaBacana addOverlay: rota.polyline level: MKOverlayLevelAboveRoads];
         
-        NSLog(@"\nCOMEÇO ROTA\n");
         
+        
+        NSLog(@"\nCOMEÇO ROTA\n");
         for (MKRouteStep *step in rota.steps) {
             NSLog(@"%@", step.instructions);
         }
-        
         NSLog(@"\nFIM ROTA\n");
         
     }
