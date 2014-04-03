@@ -50,24 +50,24 @@
     if ([TWTweetComposeViewController canSendTweet])
     {
         TWTweetComposeViewController *tweetSheet = [[TWTweetComposeViewController alloc] init];
-        [tweetSheet setInitialText:@"Tweeting from iOS 5 By Tutorials! :)"];
+        [tweetSheet setInitialText:@"Coloque a descricao do problema e escolha"];
         
-//        if (self.imageString)
-//        {
-//            [tweetSheet addImage:[UIImage imageNamed:self.imageString]];
-//        }
-//        
-//        if (self.urlString)
-//        {
-//            [tweetSheet addURL:[NSURL URLWithString:self.urlString]];
-//        }
-//        
-//	    [self presentModalViewController:tweetSheet animated:YES];
+        if (self.imageString)
+        {
+            [tweetSheet addImage:[UIImage imageNamed:self.imageString]];
+        }
+        
+        if (self.nomeTwitter)
+        {
+            [tweetSheet addURL:[NSURL URLWithString:self.nomeTwitter]];
+        }
+        
+	    [self presentModalViewController:tweetSheet animated:YES];
     }
     else
     {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry"
-                                                            message:@"You can't send a tweet right now, make sure your device has an internet connection and you have at least one Twitter account setup"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Desculpe"
+                                                            message:@"Voce nao pode logar se nao estiver com o twitter instalado e logado!"
                                                            delegate:self
                                                   cancelButtonTitle:@"OK"
                                                   otherButtonTitles:nil];
@@ -76,4 +76,25 @@
 
 }
 
+- (IBAction)buttonProject:(id)sender {
+   //[[ViewController sharedManager] mapaBacana].userLocation.location.;
+    self.nomeTwitter = @"@ProjetoSdkIOS";
+}
+
+- (IBAction)buttonCET:(id)sender {
+    self.nomeTwitter = @"@CETSP_";
+}
+
+- (IBAction)buttonBomb:(id)sender {
+    
+}
+
+
+
 @end
+
+
+
+
+
+

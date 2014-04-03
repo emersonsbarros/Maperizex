@@ -14,7 +14,7 @@
 #import "STTwitter.h"
 #import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController <MKMapViewDelegate, UITextFieldDelegate, UISearchBarDelegate> {
+@interface ViewController : UIViewController <MKMapViewDelegate , UITextFieldDelegate, UISearchBarDelegate, CLLocationManagerDelegate > {
     //API do twiiter
     STTwitterAPI *twitter;
 }

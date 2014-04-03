@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import <Twitter/Twitter.h>
+#import "ViewController.h"
 
 @interface SendTwitterViewController : UIViewController
+
+@property NSString *nomeTwitter;
+@property  NSString *imageString;
+
 - (IBAction)buttonTwetar:(id)sender;
-@property (weak, nonatomic) IBOutlet UITextField *campoTweet;
+
+
+- (IBAction)buttonProject:(id)sender;
+- (IBAction)buttonCET:(id)sender;
+- (IBAction)buttonBomb:(id)sender;
 
 @end

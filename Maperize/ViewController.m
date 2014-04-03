@@ -62,6 +62,9 @@
     [self.view addSubview: self.lteste];
     
     /// ATRIBUTOS DO TWITER
+    
+ 
+    
     twitter = [STTwitterAPI twitterAPIAppOnlyWithConsumerKey:@"FxaToB2yxC9iX3fJ4tzgw"
                                               consumerSecret:@"f0IVL6hjhaoC4OncXLVp8mxq3Aq5x0BFjnvMBZjUXzQ"];
     
@@ -77,7 +80,7 @@
    [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
     [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTime) userInfo:nil repeats:YES];
     
-
+    [self geocodeLocation];
     
     
     //     Marca os radares na tela
@@ -94,6 +97,7 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self zoomToUserRegion];
+    
 }
 
 
@@ -105,9 +109,92 @@
 
 //================================== MÉTODOS PARA TWITTER ======================================
 
--(void)removePino{
+- (void)reverseGeocodeLocation:(CLLocation *)location completionHandler:(CLGeocodeCompletionHandler)completionHandler{
     
 }
+
+- (void)someMethodYouCall
+{
+    NSLog(@"Begin");
+    __block NSString *returnAddress = @"";
+    
+
+    CLGeocoder* geocoder = [[CLGeocoder alloc]init];
+    
+    [geocoder reverseGeocodeLocation:self.mapaBacana.userLocation.location completionHandler:^(NSArray *placemarks, NSError *error) {
+      
+        if(error){
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        
+        CLPlacemark *placemark = [placemarks lastObject];
+        
+        NSString *startAddressString = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
+                                        placemark.subThoroughfare, placemark.thoroughfare,
+                                        placemark.postalCode, placemark.locality,
+                                        placemark.administrativeArea,
+                                        placemark.country];
+        returnAddress = startAddressString;
+        
+        NSLog(@"vvv= %@",returnAddress);
+        NSLog(@"Einde");
+        
+        
+    }];
+}
+
+- (void)geocodeLocation
+{
+   
+
+    CLGeocoder* geocoder = [[CLGeocoder alloc]init];
+    
+    [geocoder reverseGeocodeLocation:self.mapaBacana.userLocation.location completionHandler:
+     ^(NSArray* placemarks, NSError* error){
+    
+         for (CLPlacemark  *aPlacemark in placemarks) {
+             NSString *startAddressString = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@\n%@",
+                                             aPlacemark.subThoroughfare, aPlacemark.thoroughfare,
+                                             aPlacemark.postalCode, aPlacemark.locality,
+                                             aPlacemark.administrativeArea,
+                                             aPlacemark.country];
+             
+             NSLog(@"valo = %@",startAddressString);
+        }
+     
+     
+     }];
+}
+
+
+//-(void)teste{
+//    MKPointAnnotation *ponto = [[MKPointAnnotation alloc] init];
+//    CLGeocoder* geocoder = [[CLGeocoder alloc]init];
+//     NSString *ruaNumero = [NSString stringWithFormat:@"%@%@%@", [Coord rua],@" ", [Coord numero ]];
+//    
+//    NSLog(@" vPRO = %@",ruaNumero);
+//    
+//    [geocoder geocodeAddressString:ruaNumero completionHandler:^(NSArray* placemarks, NSError* error){
+//        for (CLPlacemark  *aPlacemark in placemarks) {
+//            
+//            CLLocationCoordinate2D localizacao;
+//            
+//            ponto.title = @"Project";
+//            ponto.subtitle = [Coord nomeCategoria];
+//            
+//            //Guarda a latitude e longitude para marcação no mapa
+//            NSString *latitude = [NSString stringWithFormat:@"%f", aPlacemark.location.coordinate.latitude];
+//            NSString *longitude = [NSString stringWithFormat:@"%f", aPlacemark.location.coordinate.longitude];
+//            localizacao.latitude = [latitude doubleValue];
+//            localizacao.longitude = [longitude doubleValue];
+//            
+//            ponto.coordinate = localizacao;
+//            
+//            
+//        }
+//    }];
+//
+//}
 
 -(void)refreshTime{
     NSDate *today = [[NSDate alloc] init];
