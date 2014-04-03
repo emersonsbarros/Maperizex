@@ -987,13 +987,15 @@
         
         CoodenadaLatitudeLongitude *coordenadaDeObstaculo;
         CLLocationCoordinate2D coordenadaDeRota;
+
         
+        //Percorre a lista de todos os obstáculos (coordenadas) exibidos np mapa
         for (coordenadaDeObstaculo in [[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]) {
             
+            //Percorre a lista de pontos que esta rota passa
             for (int i = 0; i < rota.polyline.pointCount; i++) {
                 
                 coordenadaDeRota = MKCoordinateForMapPoint(rota.polyline.points[i]);
-                
                 coordenadaDeRota.latitude = coordenadaDeRota.latitude;
                 coordenadaDeRota.longitude = coordenadaDeRota.longitude;
                 
@@ -1001,6 +1003,8 @@
                 NSLog(@"OBST LATITUDE: %f / LONGITUDE: %f",  coordenadaDeObstaculo.latitude,  coordenadaDeObstaculo.longitude);
                 
                 
+                //Comparação entre a coordenada do obstáculo e coordenada do ponto que a rota está passando
+                //---PS: Colocamos uma tolerância de 0.000020, porém ainda não está 100% preciso
                 if ((      ((coordenadaDeObstaculo.latitude <= (coordenadaDeRota.latitude) + tolerancia)) && (coordenadaDeObstaculo.latitude >= (coordenadaDeRota.latitude) - tolerancia))    &&                                     ((coordenadaDeObstaculo.longitude <= (coordenadaDeRota.longitude) + tolerancia)) && (coordenadaDeObstaculo.longitude >= (coordenadaDeRota.longitude) - tolerancia)) {
                     NSLog(@"Está rota passa por um pino!");
                 }
@@ -1017,8 +1021,10 @@
         
         
         NSLog(@"\nCOMEÇO ROTA\n");
+        int auxiliar = 1;
         for (MKRouteStep *step in rota.steps) {
-            NSLog(@"%@", step.instructions);
+            NSLog(@"ETAPA %i - %@ by %.0f meters", auxiliar, step.instructions, (double)step.distance);
+            auxiliar++;
         }
         NSLog(@"\nFIM ROTA\n");
         
