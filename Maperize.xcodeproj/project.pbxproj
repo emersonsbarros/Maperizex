@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0B4BF74618EDD56A0073B108 /* imageBomb.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B4BF74418EDD56A0073B108 /* imageBomb.jpg */; };
-		0B4BF74718EDD56A0073B108 /* imageCET.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B4BF74518EDD56A0073B108 /* imageCET.jpg */; };
-		0B4BF74918EDD5D30073B108 /* ImageApple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0B4BF74818EDD5D30073B108 /* ImageApple.jpg */; };
 		0B58F3E918E9DF5700AF7B38 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3E818E9DF5700AF7B38 /* Accounts.framework */; };
 		0B58F3EB18E9DF5E00AF7B38 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3EA18E9DF5E00AF7B38 /* Social.framework */; };
 		0B58F3ED18E9DF6700AF7B38 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B58F3EC18E9DF6700AF7B38 /* Twitter.framework */; };
-		0B5E96B118ECAD3000E42C58 /* SendTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B5E96B018ECAD3000E42C58 /* SendTwitterViewController.m */; };
 		3FB0D1E018EBEB4C002CEB5A /* BombeirosIcone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB0D1DD18EBEB4C002CEB5A /* BombeirosIcone.png */; };
 		3FB0D1E118EBEB4C002CEB5A /* CETIcone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB0D1DE18EBEB4C002CEB5A /* CETIcone.png */; };
 		3FB0D1E218EBEB4C002CEB5A /* ProjectIcone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB0D1DF18EBEB4C002CEB5A /* ProjectIcone.png */; };
+		3FB47F4A18EEFDD500E93E7B /* CoodenadaLatitudeLongitude.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FB47F4918EEFDD500E93E7B /* CoodenadaLatitudeLongitude.m */; };
+		3FB47F4C18EEFE9700E93E7B /* routes.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FB47F4B18EEFE9700E93E7B /* routes.png */; };
+		3FCF3FC518EE5D9900B483DB /* ScreenLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF3FC418EE5D9900B483DB /* ScreenLeftViewController.m */; };
+		3FCF3FC918EE6DE100B483DB /* ImageApple.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF3FC618EE6DE100B483DB /* ImageApple.png */; };
+		3FCF3FCA18EE6DE100B483DB /* imageBomb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF3FC718EE6DE100B483DB /* imageBomb.png */; };
+		3FCF3FCB18EE6DE100B483DB /* imageCET.png in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF3FC818EE6DE100B483DB /* imageCET.png */; };
+		3FCF3FD218EE863900B483DB /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FCF3FD118EE863900B483DB /* Base64.m */; };
+		3FCF3FD418EE8C6B00B483DB /* Fundo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3FCF3FD318EE8C6B00B483DB /* Fundo.jpg */; };
 		A86E57A018E6189400C65A59 /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = A86E579F18E6189400C65A59 /* search.png */; };
 		A8C326DC18E34D0B0081E47E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C326DB18E34D0B0081E47E /* Foundation.framework */; };
 		A8C326DE18E34D0B0081E47E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C326DD18E34D0B0081E47E /* CoreGraphics.framework */; };
@@ -86,17 +90,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B4BF74418EDD56A0073B108 /* imageBomb.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imageBomb.jpg; sourceTree = "<group>"; };
-		0B4BF74518EDD56A0073B108 /* imageCET.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = imageCET.jpg; sourceTree = "<group>"; };
-		0B4BF74818EDD5D30073B108 /* ImageApple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ImageApple.jpg; sourceTree = "<group>"; };
 		0B58F3E818E9DF5700AF7B38 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		0B58F3EA18E9DF5E00AF7B38 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		0B58F3EC18E9DF6700AF7B38 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
-		0B5E96AF18ECAD3000E42C58 /* SendTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SendTwitterViewController.h; path = ../SendTwitterViewController.h; sourceTree = "<group>"; };
-		0B5E96B018ECAD3000E42C58 /* SendTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SendTwitterViewController.m; path = ../SendTwitterViewController.m; sourceTree = "<group>"; };
 		3FB0D1DD18EBEB4C002CEB5A /* BombeirosIcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BombeirosIcone.png; sourceTree = "<group>"; };
 		3FB0D1DE18EBEB4C002CEB5A /* CETIcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CETIcone.png; sourceTree = "<group>"; };
 		3FB0D1DF18EBEB4C002CEB5A /* ProjectIcone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ProjectIcone.png; sourceTree = "<group>"; };
+		3FB47F4818EEFDD500E93E7B /* CoodenadaLatitudeLongitude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoodenadaLatitudeLongitude.h; sourceTree = "<group>"; };
+		3FB47F4918EEFDD500E93E7B /* CoodenadaLatitudeLongitude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoodenadaLatitudeLongitude.m; sourceTree = "<group>"; };
+		3FB47F4B18EEFE9700E93E7B /* routes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = routes.png; sourceTree = "<group>"; };
+		3FCF3FC318EE5D9900B483DB /* ScreenLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenLeftViewController.h; sourceTree = "<group>"; };
+		3FCF3FC418EE5D9900B483DB /* ScreenLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScreenLeftViewController.m; sourceTree = "<group>"; };
+		3FCF3FC618EE6DE100B483DB /* ImageApple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageApple.png; sourceTree = "<group>"; };
+		3FCF3FC718EE6DE100B483DB /* imageBomb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageBomb.png; sourceTree = "<group>"; };
+		3FCF3FC818EE6DE100B483DB /* imageCET.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imageCET.png; sourceTree = "<group>"; };
+		3FCF3FD018EE863900B483DB /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		3FCF3FD118EE863900B483DB /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		3FCF3FD318EE8C6B00B483DB /* Fundo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Fundo.jpg; sourceTree = "<group>"; };
 		A86E579F18E6189400C65A59 /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
 		A8C326D818E34D0B0081E47E /* Maperize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Maperize.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8C326DB18E34D0B0081E47E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -218,10 +228,10 @@
 		A86E579E18E6125300C65A59 /* Controladores */ = {
 			isa = PBXGroup;
 			children = (
-				0B5E96AF18ECAD3000E42C58 /* SendTwitterViewController.h */,
-				0B5E96B018ECAD3000E42C58 /* SendTwitterViewController.m */,
 				A8C326F018E34D0B0081E47E /* ViewController.h */,
 				A8C326F118E34D0B0081E47E /* ViewController.m */,
+				3FCF3FC318EE5D9900B483DB /* ScreenLeftViewController.h */,
+				3FCF3FC418EE5D9900B483DB /* ScreenLeftViewController.m */,
 			);
 			name = Controladores;
 			path = Maperize;
@@ -346,6 +356,9 @@
 		A8DB346918EB5C3200158D4E /* Arquivos */ = {
 			isa = PBXGroup;
 			children = (
+				3FCF3FD018EE863900B483DB /* Base64.h */,
+				3FCF3FD318EE8C6B00B483DB /* Fundo.jpg */,
+				3FCF3FD118EE863900B483DB /* Base64.m */,
 				A8DB346A18EB5C3200158D4E /* Lombada_maparadar.txt */,
 				A8DB346B18EB5C3200158D4E /* maparadar_todos_SP.txt */,
 				A8DB346C18EB5C3200158D4E /* Pedagio_maparadar.txt */,
@@ -372,6 +385,8 @@
 		A8DB347718EB5C3200158D4E /* Coordenadas Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				3FB47F4818EEFDD500E93E7B /* CoodenadaLatitudeLongitude.h */,
+				3FB47F4918EEFDD500E93E7B /* CoodenadaLatitudeLongitude.m */,
 				A8DB347818EB5C3200158D4E /* DataBaseCoordenada.h */,
 				A8DB347918EB5C3200158D4E /* DataBaseCoordenada.m */,
 				A8DB347A18EB5C3200158D4E /* TwitterCET */,
@@ -431,10 +446,11 @@
 			isa = PBXGroup;
 			children = (
 				A8DB349118EB5C3200158D4E /* Lompada.png */,
+				3FB47F4B18EEFE9700E93E7B /* routes.png */,
 				A8DB349218EB5C3200158D4E /* Pedagio.png */,
-				0B4BF74418EDD56A0073B108 /* imageBomb.jpg */,
-				0B4BF74818EDD5D30073B108 /* ImageApple.jpg */,
-				0B4BF74518EDD56A0073B108 /* imageCET.jpg */,
+				3FCF3FC618EE6DE100B483DB /* ImageApple.png */,
+				3FCF3FC718EE6DE100B483DB /* imageBomb.png */,
+				3FCF3FC818EE6DE100B483DB /* imageCET.png */,
 				3FB0D1DD18EBEB4C002CEB5A /* BombeirosIcone.png */,
 				3FB0D1DE18EBEB4C002CEB5A /* CETIcone.png */,
 				3FB0D1DF18EBEB4C002CEB5A /* ProjectIcone.png */,
@@ -569,26 +585,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB47F4C18EEFE9700E93E7B /* routes.png in Resources */,
 				3FB0D1E118EBEB4C002CEB5A /* CETIcone.png in Resources */,
 				A8DB34D018EB5C3200158D4E /* SemafaroComRadar.png in Resources */,
-				0B4BF74718EDD56A0073B108 /* imageCET.jpg in Resources */,
 				A8DB34CD18EB5C3200158D4E /* RadarFixo.png in Resources */,
 				A8C326F418E34D0B0081E47E /* Images.xcassets in Resources */,
 				A8DB34CE18EB5C3200158D4E /* RadarMovel.png in Resources */,
-				0B4BF74618EDD56A0073B108 /* imageBomb.jpg in Resources */,
 				A8DB34BB18EB5C3200158D4E /* RadarMovel_maparadar.txt in Resources */,
 				A8DB34CF18EB5C3200158D4E /* SemafaroComCamera.png in Resources */,
 				A8DB34CC18EB5C3200158D4E /* PoliciaRodoviaria.png in Resources */,
 				A8DB34BC18EB5C3200158D4E /* SemaforoCamera_maparadar.txt in Resources */,
+				3FCF3FC918EE6DE100B483DB /* ImageApple.png in Resources */,
 				A8DB34BD18EB5C3200158D4E /* SemaforoRadar_maparadar.txt in Resources */,
+				3FCF3FCA18EE6DE100B483DB /* imageBomb.png in Resources */,
+				3FCF3FCB18EE6DE100B483DB /* imageCET.png in Resources */,
 				A8DB34B618EB5C3200158D4E /* Lombada_maparadar.txt in Resources */,
 				A8DB34CB18EB5C3200158D4E /* Pedagio.png in Resources */,
 				A8C326E618E34D0B0081E47E /* InfoPlist.strings in Resources */,
 				A8DB34B718EB5C3200158D4E /* maparadar_todos_SP.txt in Resources */,
-				0B4BF74918EDD5D30073B108 /* ImageApple.jpg in Resources */,
 				A8C326EF18E34D0B0081E47E /* Main.storyboard in Resources */,
 				A8DB34B818EB5C3200158D4E /* Pedagio_maparadar.txt in Resources */,
 				A8DB34CA18EB5C3200158D4E /* Lompada.png in Resources */,
+				3FCF3FD418EE8C6B00B483DB /* Fundo.jpg in Resources */,
 				A8DB34B918EB5C3200158D4E /* PoliciaRodoviaria_maparadar.txt in Resources */,
 				3FB0D1E018EBEB4C002CEB5A /* BombeirosIcone.png in Resources */,
 				A86E57A018E6189400C65A59 /* search.png in Resources */,
@@ -619,7 +637,7 @@
 				A8DB34C918EB5C3200158D4E /* DataBaseCoordenadaRadares.m in Sources */,
 				A8DB34C718EB5C3200158D4E /* Tweet.m in Sources */,
 				A8DB34DC18EB5C3200158D4E /* JSONSyntaxHighlight.m in Sources */,
-				0B5E96B118ECAD3000E42C58 /* SendTwitterViewController.m in Sources */,
+				3FCF3FC518EE5D9900B483DB /* ScreenLeftViewController.m in Sources */,
 				A8DB34D618EB5C3200158D4E /* STTwitterAppOnly.m in Sources */,
 				A8C326F218E34D0B0081E47E /* ViewController.m in Sources */,
 				A8DB34C018EB5C3200158D4E /* DataBaseCoordenada.m in Sources */,
@@ -628,6 +646,7 @@
 				A8DB34D218EB5C3200158D4E /* NSError+STTwitter.m in Sources */,
 				A8DB34C118EB5C3200158D4E /* CoordenadaCet.m in Sources */,
 				A8C326E818E34D0B0081E47E /* main.m in Sources */,
+				3FCF3FD218EE863900B483DB /* Base64.m in Sources */,
 				A8DB34D918EB5C3200158D4E /* STTwitterOS.m in Sources */,
 				A8DB34D418EB5C3200158D4E /* STHTTPRequest+STTwitter.m in Sources */,
 				A8DB34C818EB5C3200158D4E /* CoordenadaRadares.m in Sources */,
@@ -636,6 +655,7 @@
 				A8DB34C318EB5C3200158D4E /* TweetCet.m in Sources */,
 				A8DB34D718EB5C3200158D4E /* STTwitterHTML.m in Sources */,
 				A8DB34BE18EB5C3200158D4E /* Rota.m in Sources */,
+				3FB47F4A18EEFDD500E93E7B /* CoodenadaLatitudeLongitude.m in Sources */,
 				A8DB34D818EB5C3200158D4E /* STTwitterOAuth.m in Sources */,
 				A8DB34C218EB5C3200158D4E /* CoordenadaCetSite.m in Sources */,
 				A8DB34D118EB5C3200158D4E /* NSDateFormatter+STTwitter.m in Sources */,

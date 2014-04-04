@@ -12,6 +12,8 @@
 #import "CoordenadaCorpo.h"
 #import "CoordenadaCetSite.h"
 #import <MapKit/MapKit.h>
+#import "CoodenadaLatitudeLongitude.h"
+
 
 #define NSLog(FORMAT, ...) printf("%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
@@ -19,7 +21,7 @@
 
 
 @property NSMutableArray *listaCoordenadas;
-@property NSTimer *tempoAtual;
+@property NSMutableArray *listaCoordenadasLatLong;
 
 +(DataBaseCoordenada*)sharedManager;
 
@@ -41,7 +43,5 @@
 -(MKPointAnnotation*)marcarPosicaoNoMapaDiretoTwitterCadaUmCorpo:(CoordenadaCorpo*)CoordCet;
 
 -(MKPointAnnotation*)marcarPosicaoNoMapaDiretoSiteCet:(CoordenadaCetSite*)CoordCet;
-
-
     
 @end

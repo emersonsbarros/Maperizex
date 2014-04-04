@@ -14,15 +14,14 @@
 #import "STTwitter.h"
 #import <MapKit/MapKit.h>
 
-@interface ViewController : UIViewController <MKMapViewDelegate , UITextFieldDelegate, UISearchBarDelegate, CLLocationManagerDelegate > {
+@interface ViewController : UIViewController <MKMapViewDelegate , UITextFieldDelegate, UISearchBarDelegate,UITableViewDataSource, UITableViewDelegate > {
     //API do twiiter
     STTwitterAPI *twitter;
 }
-//twitter
 
-- (IBAction)bteste:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *lteste;
 
+@property (weak, nonatomic) IBOutlet UIView *viewGesture;
+@property UISwipeGestureRecognizer *swipe;
 
 @property NSDate *dataBrasil;
 
@@ -37,13 +36,18 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblbackground;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
-//Rota
+//Passo a passo da rota
+@property (weak, nonatomic) IBOutlet UITableView *tabelaDeDirecoes;
+@property MKDirectionsResponse *direcoesPorRota;
+@property int numeroDeRotas;
+@property (weak, nonatomic) IBOutlet UIView *menuView;
 
+
+
+//Rota
 @property (weak, nonatomic) IBOutlet UITextField *txtPartida;
 @property (weak, nonatomic) IBOutlet UITextField *txtDestino;
 @property (weak, nonatomic) IBOutlet UILabel *lblRota;
-@property (weak, nonatomic) IBOutlet UIButton *outSearchRota;
-- (IBAction)searchRota:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *outAddRota;
 - (IBAction)addRota:(id)sender;
 

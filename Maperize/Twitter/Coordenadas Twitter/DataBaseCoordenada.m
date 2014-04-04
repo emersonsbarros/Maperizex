@@ -24,6 +24,7 @@
     self = [super init];
     if(self){
         self.listaCoordenadas= [[NSMutableArray alloc]init];
+        self.listaCoordenadasLatLong= [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -42,8 +43,7 @@
 -(void)criaCoordenada:(Coordenada *)coord{
     [[[DataBaseCoordenada sharedManager] listaCoordenadas]addObject:coord];
     
-    
-//    for(int i=0;i<self.listaCoordenadas.count;i++){
+    for(int i=0;i<self.listaCoordenadas.count;i++){
 //        NSLog(@"%@",coord.nomeCategoria);
 //        NSLog(@"%@",coord.bairro);
 //        NSLog(@"%@",coord.cep);
@@ -55,7 +55,7 @@
 //        NSLog(@"%@",coord.data);
 //        NSLog(@"%d",coord.estado);
 //        NSLog(@"\n\n");
-//    }
+    }
 }
 
 -(void)criaCoordenadaCET:(CoordenadaCet *)coord{
@@ -95,6 +95,12 @@
             localizacao.latitude = [latitude doubleValue];
             localizacao.longitude = [longitude doubleValue];
             
+            
+            CoodenadaLatitudeLongitude *cordll = [[CoodenadaLatitudeLongitude alloc]init];
+            cordll.latitude = [latitude doubleValue];
+            cordll.longitude = [longitude doubleValue];
+            [[[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]addObject:cordll];
+            
             ponto.coordinate = localizacao;
             
             
@@ -127,6 +133,10 @@
             localizacao.latitude = [latitude doubleValue];
             localizacao.longitude = [longitude doubleValue];
             
+            CoodenadaLatitudeLongitude *cordll = [[CoodenadaLatitudeLongitude alloc]init];
+            cordll.latitude = [latitude doubleValue];
+            cordll.longitude = [longitude doubleValue];
+            [[[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]addObject:cordll];
             
             ponto.coordinate = localizacao;
             
@@ -159,6 +169,10 @@
             localizacao.latitude = [latitude doubleValue];
             localizacao.longitude = [longitude doubleValue];
             
+            CoodenadaLatitudeLongitude *cordll = [[CoodenadaLatitudeLongitude alloc]init];
+            cordll.latitude = [latitude doubleValue];
+            cordll.longitude = [longitude doubleValue];
+            [[[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]addObject:cordll];
             
             ponto.coordinate = localizacao;
             
@@ -193,6 +207,13 @@
             localizacao.latitude = [latitude doubleValue];
             localizacao.longitude = [longitude doubleValue];
             
+            CoodenadaLatitudeLongitude *cordll = [[CoodenadaLatitudeLongitude alloc]init];
+            cordll.latitude = [latitude doubleValue];
+            cordll.longitude = [longitude doubleValue];
+            [[[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]addObject:cordll];
+            
+            NSLog(@"lat = %f",cordll.latitude);
+            NSLog(@"long = %f",cordll.longitude);
             
             ponto.coordinate = localizacao;
             
