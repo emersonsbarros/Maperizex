@@ -30,19 +30,6 @@
 @implementation ViewController
 
 
-+(ViewController*)sharedManager{
-    static ViewController *unicoDataCoord = nil;
-    if(!unicoDataCoord){
-        unicoDataCoord = [[super allocWithZone:nil]init];
-    }
-    return unicoDataCoord;
-}
-
-
-+(id)allocWithZone:(struct _NSZone *)zone{
-    return [self sharedManager];
-}
-
 - (void)viewDidLoad{
     [super viewDidLoad];
     
@@ -54,6 +41,7 @@
     [self.txtPartida setDelegate: self];
     [self.txtDestino setDelegate: self];
     [self.tabelaDeDirecoes setDelegate: self];
+    self.tabelaDeDirecoes.dataSource = self;
     
     //Adiciona as views do mapa, botão, caixa de texto ... etc
     [self.view addSubview: self.mapaBacana];
@@ -72,13 +60,19 @@
     [self.menuView addSubview: self.txtDestino];
     
     
-    
+    self.gambi = 0;
     //Configura sombra e cor da view de rotas
     self.menuView.layer.shadowColor = [[UIColor blackColor] CGColor];
     self.menuView.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
     self.menuView.layer.shadowRadius = 3.0f;
     self.menuView.layer.shadowOpacity = 1.0f;
     [self.menuView setBackgroundColor: [UIColor whiteColor]];
+    
+    self.tabelaDeDirecoes.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.tabelaDeDirecoes.layer.shadowOffset = CGSizeMake(1.0f, 1.0f);
+    self.tabelaDeDirecoes.layer.shadowRadius = 3.0f;
+    self.tabelaDeDirecoes.layer.shadowOpacity = 1.0f;
+    [self.tabelaDeDirecoes setBackgroundColor: [UIColor whiteColor]];
     
     [self.view addSubview: self.menuView];
     
@@ -108,12 +102,11 @@
    [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTwitterCorpo) userInfo:nil repeats:YES];
     [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTime) userInfo:nil repeats:YES];
     
-    [self geocodeLocation];
     
     
     //     Marca os radares na tela
     //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPoliciaRodoviaria] ];
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarFixo] ];
+     //    [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarFixo] ];
     //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarMovel] ];
     //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparLomapada] ];
     //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPedagio] ];
@@ -125,6 +118,7 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self zoomToUserRegion];
+    [self viewWillLayoutSubviews];
     
 }
 
@@ -132,7 +126,6 @@
 - (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
 }
-
 
 
 //================================== MÉTODOS PARA TWITTER ======================================
@@ -144,6 +137,7 @@
 
 - (void)viewWillLayoutSubviews
 {
+    
     if  ( UIInterfaceOrientationIsLandscape ( self.interfaceOrientation ) )
     {
         CGRect rect = self.mapaBacana.frame;
@@ -151,41 +145,6 @@
         rect.size.height =  800 ;
         self.mapaBacana.frame = rect;
         
-//        CGRect rect = self.topLeftView.frame;
-//        rect.size.width =  254 ;
-//        rect.size.height =  130 ;
-//        self.topLeftView.frame = rect;
-//        
-//        rect = self.topRightView.frame;
-//        rect.origin.x =  294 ;
-//        rect.size.width =  254 ;
-//        rect.size.height =  130 ;
-//        self.topRightView.frame = rect;
-//        
-//        rect = self.bottomView.frame;
-//        rect.origin.y =  170 ;
-//        rect.size.width =  528 ;
-//        rect.size.height =  130 ;
-//        self.bottomView.frame = rect;
-    }
-    else
-    {
-//        CGRect rect = self.topLeftView.frame;
-//        rect.size.width =  130 ;
-//        rect.size.height =  254 ;
-//        self.topLeftView.frame = rect;
-//        
-//        rect = self.topRightView.frame;
-//        rect.origin.x =  170 ;
-//        rect.size.width =  130 ;
-//        rect.size.height =  254 ;
-//        self.topRightView.frame = rect;
-//        
-//        rect = self.bottomView.frame;
-//        rect.origin.y =  295 ;
-//        rect.size.width =  280 ;
-//        rect.size.height =  254 ;
-//        self.bottomView.frame = rect;
     }
 }
 
@@ -724,10 +683,11 @@
     }];
 }
 
+
 -(void)serializaDadosSiteCET{
     
     NSString *problema = @"Ocorrências não disponíveis no momento";
-    NSString* url = @"http://cetsp1.cetsp.com.br/monitransmapa/IMG1/ocorrenciasH.asp?ordem=H";
+    NSString* url = @"http://cetsp1.cetsp.com.br/monitransmapa/IMG5/ocorrenciasH.asp?ordem=H";
     NSURL* query = [NSURL URLWithString:url];
     NSString* result = [NSString stringWithContentsOfURL:query encoding:NSWindowsCP1254StringEncoding error:nil];
     // NSString *s = [NSString stringWithFormat:@"%@%@",@"Avenida",arsd];
@@ -740,9 +700,8 @@
         NSURL* query = [NSURL URLWithString:s];
         result = [NSString stringWithContentsOfURL:query encoding:NSWindowsCP1254StringEncoding error:nil];
         
-        // NSLog(@"site =%@",s);
-        
     }
+    
     
     NSString *string=result;
     NSRange searchFromRange = [string rangeOfString:@"<table>"];
@@ -881,6 +840,11 @@
         //pinView.pinColor = MKPinAnnotationColorRed;
     }
     
+    if([pinView.annotation.title isEqualToString:@"1"]){
+        [pinView setImage:[UIImage imageNamed:@"RadarFixo.png"]];
+        //pinView.pinColor = MKPinAnnotationColorRed;
+    }
+    
     
     pinView.canShowCallout = YES;
     pinView.animatesDrop = YES;
@@ -889,7 +853,15 @@
     return pinView;
 }
 
+
+
+
 //================================== FIM DOS METODOS TWITTER =====================================
+
+
+
+
+
 
 
 //Ao clicar na tela com o teclado evidente o mesmo é recolhido
@@ -1094,12 +1066,13 @@
     
     
     //Tolerância para sabee se passa no ponto de obstáculo
-    double tolerancia = 0.000020;
+    double tolerancia = 0.000100;
     self.numeroDeRotas = 0;
     
     
     for (MKRoute *rota in response.routes) {
         
+        self.achouObs = false;
         CoodenadaLatitudeLongitude *coordenadaDeObstaculo;
         CLLocationCoordinate2D coordenadaDeRota;
         self.numeroDeRotas++;
@@ -1123,6 +1096,9 @@
                 //---PS: Colocamos uma tolerância de 0.000020, porém ainda não está 100% preciso
                 if ((      ((coordenadaDeObstaculo.latitude <= (coordenadaDeRota.latitude) + tolerancia)) && (coordenadaDeObstaculo.latitude >= (coordenadaDeRota.latitude) - tolerancia))    &&                                     ((coordenadaDeObstaculo.longitude <= (coordenadaDeRota.longitude) + tolerancia)) && (coordenadaDeObstaculo.longitude >= (coordenadaDeRota.longitude) - tolerancia)) {
                     NSLog(@"Está rota passa por um pino!");
+                    
+                    self.achouObs = true;
+                    
                 }
                 
                 
@@ -1147,6 +1123,8 @@
     }
     
     [self.tabelaDeDirecoes reloadData];
+    self.tabelaDeDirecoes.hidden = NO;
+
 }
 
 //Função que renderiza a rota
@@ -1172,7 +1150,6 @@
     
     if (self.menuView.hidden == YES){
         self.menuView.hidden = NO;
-        self.tabelaDeDirecoes.hidden = NO;
     }else{
         self.menuView.hidden = YES;
         self.tabelaDeDirecoes.hidden = YES;
@@ -1193,6 +1170,10 @@
         [[self txtDestino] becomeFirstResponder];
     
     return YES;
+}
+
+
+- (IBAction)bu:(id)sender {
 }
 
 
@@ -1224,12 +1205,19 @@
     MKRoute *rota = self.direcoesPorRota.routes[indexPath.section];
     MKRouteStep *indiceAuxiliar = rota.steps[indexPath.row];
     
-    [[cell textLabel] setText: indiceAuxiliar.description];
+    [[cell textLabel] setText: [NSString stringWithFormat:@"%@", indiceAuxiliar.instructions]];
     [cell.detailTextLabel setText: [NSString stringWithFormat: @"%.0f metros", (double)indiceAuxiliar.distance]];
+    
+    if(self.achouObs){
+        [[cell textLabel] setTextColor:[UIColor redColor]];
+    }
     
     return cell;
 }
 
-
+-(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    //self.gambi += 1;
+    return [NSString stringWithFormat:@"ROTA "];
+}
 
 @end

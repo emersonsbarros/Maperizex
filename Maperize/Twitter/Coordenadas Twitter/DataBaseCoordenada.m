@@ -212,8 +212,8 @@
             cordll.longitude = [longitude doubleValue];
             [[[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]addObject:cordll];
             
-            NSLog(@"lat = %f",cordll.latitude);
-            NSLog(@"long = %f",cordll.longitude);
+//            NSLog(@"lat = %f",cordll.latitude);
+//            NSLog(@"long = %f",cordll.longitude);
             
             ponto.coordinate = localizacao;
             

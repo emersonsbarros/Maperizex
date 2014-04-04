@@ -201,7 +201,7 @@
 
 -(NSMutableArray*)marcarPosicaoNoMapaRadarFixo{
     
-          NSMutableArray *listcoord = [[NSMutableArray alloc]init];
+        NSMutableArray *listcoord = [[NSMutableArray alloc]init];
     
     for(int i=0;i<[[[DataBaseCoordenadaRadares sharedManager]listaCoordenadasRadarFixo]count];i++){
         
@@ -216,10 +216,12 @@
         
         //Zoom no ponto
         ponto.coordinate = localizacao;
+        //ponto.title = [[[[DataBaseCoordenadaRadares sharedManager]listaCoordenadasRadarFixo]objectAtIndex:i]title];
+
         
         [listcoord addObject:ponto];
         
-        NSLog(@"%d",i);
+        //NSLog(@"%d",i);
         
     }
     return listcoord;
