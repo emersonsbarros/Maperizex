@@ -36,6 +36,9 @@
     
     //Configura a localização atual como a localização do usuário e adiciona os delegates do mapa e pesquisa
     self.mapaBacana.showsUserLocation = YES;
+    
+    self.mapaBacana.userLocation.location.coordinate;
+    
     [self.mapaBacana setDelegate: self];
     [self.searchBar setDelegate: self];
     [self.txtPartida setDelegate: self];
@@ -93,8 +96,8 @@
     [[DataBaseCoordenadaRadares sharedManager] SerializarCoordenadasRadarDoSistema];
     
     //[self refreshTwitterCET];
-    [self refreshTwitterProject];
-    [self refreshTwitterCorpo];
+    //[self refreshTwitterProject];
+    //       [self refreshTwitterCorpo];
     [self serializaDadosSiteCET];
     
    [NSTimer scheduledTimerWithTimeInterval:160.0 target:self selector:@selector(refreshTwitterProject) userInfo:nil repeats:YES];
@@ -105,13 +108,13 @@
     
     
     //     Marca os radares na tela
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPoliciaRodoviaria] ];
-     //    [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarFixo] ];
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarMovel] ];
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparLomapada] ];
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPedagio] ];
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComCamera] ];
-    //     [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComRadar] ];
+     //    [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPoliciaRodoviaria] ];
+         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarFixo] ];
+         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarMovel] ];
+       //  [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparLomapada] ];
+       //  [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPedagio] ];
+         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComCamera] ];
+         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComRadar] ];
 }
 
 
@@ -1065,24 +1068,31 @@
 -(void)mostraRotaPassoAPasso:(MKDirectionsResponse*)response{
     
     
-    //Tolerância para sabee se passa no ponto de obstáculo
+    //Tolerância para saber se passa no ponto de obstáculo
     double tolerancia = 0.000100;
     self.numeroDeRotas = 0;
     
     
+    
+    
+    
+    //Pega cada rota possível
     for (MKRoute *rota in response.routes) {
         
-        self.achouObs = false;
+        
         CoodenadaLatitudeLongitude *coordenadaDeObstaculo;
         CLLocationCoordinate2D coordenadaDeRota;
         self.numeroDeRotas++;
         
         
-        //Percorre a lista de todos os obstáculos (coordenadas) exibidos np mapa
+        //Percorre a lista de todos os obstáculos (coordenadas) exibidos no mapa
         for (coordenadaDeObstaculo in [[DataBaseCoordenada sharedManager] listaCoordenadasLatLong]) {
+            
             
             //Percorre a lista de pontos que esta rota passa
             for (int i = 0; i < rota.polyline.pointCount; i++) {
+                
+                self.achouObstaculo = false;
                 
                 coordenadaDeRota = MKCoordinateForMapPoint(rota.polyline.points[i]);
                 coordenadaDeRota.latitude = coordenadaDeRota.latitude;
@@ -1092,14 +1102,20 @@
                 NSLog(@"OBST LATITUDE: %f / LONGITUDE: %f",  coordenadaDeObstaculo.latitude,  coordenadaDeObstaculo.longitude);
                 
                 
-                //Comparação entre a coordenada do obstáculo e coordenada do ponto que a rota está passando
-                //---PS: Colocamos uma tolerância de 0.000020, porém ainda não está 100% preciso
-                if ((      ((coordenadaDeObstaculo.latitude <= (coordenadaDeRota.latitude) + tolerancia)) && (coordenadaDeObstaculo.latitude >= (coordenadaDeRota.latitude) - tolerancia))    &&                                     ((coordenadaDeObstaculo.longitude <= (coordenadaDeRota.longitude) + tolerancia)) && (coordenadaDeObstaculo.longitude >= (coordenadaDeRota.longitude) - tolerancia)) {
-                    NSLog(@"Está rota passa por um pino!");
+                if (!self.achouObstaculo) {
                     
-                    self.achouObs = true;
-                    
+                    //Comparação entre a coordenada do obstáculo e coordenada do ponto que a rota está passando
+                    //---PS: Colocamos uma tolerância de 0.000020, porém ainda não está 100% preciso
+                    if ((      ((coordenadaDeObstaculo.latitude <= (coordenadaDeRota.latitude) + tolerancia)) && (coordenadaDeObstaculo.latitude >= (coordenadaDeRota.latitude) - tolerancia))    &&                                     ((coordenadaDeObstaculo.longitude <= (coordenadaDeRota.longitude) + tolerancia)) && (coordenadaDeObstaculo.longitude >= (coordenadaDeRota.longitude) - tolerancia)) {
+                        NSLog(@"Está rota passa por um pino!");
+                        
+                        self.achouObstaculo = true;
+                        break;
+                    }
+                
                 }
+                
+
                 
                 
             }
@@ -1208,7 +1224,7 @@
     [[cell textLabel] setText: [NSString stringWithFormat:@"%@", indiceAuxiliar.instructions]];
     [cell.detailTextLabel setText: [NSString stringWithFormat: @"%.0f metros", (double)indiceAuxiliar.distance]];
     
-    if(self.achouObs){
+    if(self.achouObstaculo){
         [[cell textLabel] setTextColor:[UIColor redColor]];
     }
     

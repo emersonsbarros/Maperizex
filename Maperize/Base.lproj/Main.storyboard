@@ -164,7 +164,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-542" y="-111"/>
+            <point key="canvasLocation" x="-410" y="-111"/>
         </scene>
         <!--Screen Left View Controller-->
         <scene sceneID="yPB-IZ-nI6">
@@ -242,7 +242,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBH-FN-TWp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="357" y="-247"/>
+            <point key="canvasLocation" x="513" y="-111"/>
         </scene>
     </scenes>
     <resources>

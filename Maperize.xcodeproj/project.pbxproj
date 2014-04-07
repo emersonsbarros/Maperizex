@@ -554,7 +554,7 @@
 				ORGANIZATIONNAME = "EMERSON DE SOUZA BARROS";
 				TargetAttributes = {
 					A8C326D718E34D0B0081E47E = {
-						DevelopmentTeam = U6NZ972TGR;
+						DevelopmentTeam = SEUF597V3Z;
 					};
 					A8C326F818E34D0B0081E47E = {
 						TestTargetID = A8C326D718E34D0B0081E47E;

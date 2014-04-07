@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIView *viewGesture;
 @property UISwipeGestureRecognizer *swipe;
 @property int gambi;
-@property BOOL achouObs;
+@property BOOL achouObstaculo;
 @property NSDate *dataBrasil;
 
 +(ViewController*)sharedManager;
