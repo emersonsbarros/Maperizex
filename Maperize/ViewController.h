@@ -19,7 +19,7 @@
     STTwitterAPI *twitter;
 }
 
-
+@property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIView *viewGesture;
 @property UISwipeGestureRecognizer *swipe;
 @property int gambi;
@@ -34,7 +34,6 @@
 
 //Mapa e pesquisa
 @property (weak, nonatomic) IBOutlet MKMapView *mapaBacana;
-@property (weak, nonatomic) IBOutlet UILabel *lblbackground;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 
 //Passo a passo da rota

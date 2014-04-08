@@ -48,11 +48,14 @@
     
     //Adiciona as views do mapa, botão, caixa de texto ... etc
     [self.view addSubview: self.mapaBacana];
-    [self.view addSubview: self.lblbackground];
     [self.view addSubview: self.outAddRota];
-    [self.view addSubview: self.tipoMapa];
-    [self.view addSubview: self.searchBar];
+
     [self.view addSubview: self.tabelaDeDirecoes];
+    
+    [self.topView addSubview: self.outAddRota];
+    [self.topView addSubview: self.tipoMapa];
+    [self.topView addSubview: self.searchBar];
+    [self.view addSubview: self.topView];
     
     
     //[self.view addSubview: self.altbu];
@@ -109,12 +112,12 @@
     
     //     Marca os radares na tela
      //    [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPoliciaRodoviaria] ];
-         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarFixo] ];
-         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarMovel] ];
+         //[[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarFixo] ];
+         //[[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaRadarMovel] ];
        //  [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparLomapada] ];
        //  [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMaparPedagio] ];
-         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComCamera] ];
-         [[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComRadar] ];
+         //[[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComCamera] ];
+         //[[self mapaBacana] addAnnotations:[[DataBaseCoordenadaRadares sharedManager]marcarPosicaoNoMapaSemafaroComRadar] ];
 }
 
 
