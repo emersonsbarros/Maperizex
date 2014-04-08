@@ -218,6 +218,7 @@
                                  
                                  
                                  for (NSDictionary *twit in self.results) {
+                                     BOOL validartwitter = false;
                                      
                                      
                                      
@@ -226,6 +227,19 @@
                                      //                                     NSLog(@"User: %@ ",user);
                                      //                                     NSLog(@"ImgUserProfile: %@",img);
                                      
+                                     comment = [twit valueForKey:@"text"];
+                                     NSString *sentence = comment;
+                                     NSString *word = @" @";
+                                     
+                                     if ([sentence rangeOfString:word].location != NSNotFound) {
+                                         validartwitter = false;
+                                         ;
+                                         }else{
+                                             validartwitter = true;
+                                     }
+                                         
+                                         
+                                if(validartwitter)
                                      comment = [twit valueForKey:@"text"];
                                      date = [twit valueForKey:@"created_at"];
                                      geolo = [[twit valueForKeyPath:@"entities.media.media_url"] objectAtIndex:0];
